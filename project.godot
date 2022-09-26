@@ -18,6 +18,13 @@ config/name="Buddy Up Jam: Summer 2022"
 run/main_scene="res://scenes/title/title.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=480
+window/size/height=270
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
 [input]
 
 move_left={
