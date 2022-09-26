@@ -161,6 +161,7 @@ anims/RESET = SubResource( 1 )
 anims/to_credits = SubResource( 2 )
 anims/to_title = SubResource( 3 )
 
+[connection signal="pressed" from="HBox/Title/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="HBox/Title/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="HBox/Credits/Back" to="." method="_on_Back_pressed"]
 [connection signal="meta_clicked" from="HBox/Credits/RichTextLabel" to="." method="_on_RichTextLabel_meta_clicked"]

@@ -7,6 +7,7 @@ var change_scene_transition: bool
 onready var cur_scene := $Splash
 
 func _ready() -> void:
+	randomize()
 	change_scene("res://scenes/title/title.tscn")
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://resources/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/title/arrow/normal.png" type="Texture" id=2]
@@ -16,6 +16,71 @@
 [ext_resource path="res://scenes/title/custom.gd" type="Script" id=14]
 [ext_resource path="res://scenes/title/arrow/disabled.png" type="Texture" id=15]
 
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 main_original_0: hint_color; // Highlight
+uniform vec4 main_original_1: hint_color; // Base
+uniform vec4 main_original_2: hint_color; // Shadow
+uniform vec4 main_original_3: hint_color; // Shadow 2
+uniform vec4 main_replace: hint_color;
+
+uniform vec4 secondary_original_0: hint_color; // Highlight
+uniform vec4 secondary_original_1: hint_color; // Base
+uniform vec4 secondary_original_2: hint_color; // Shadow
+uniform vec4 secondary_replace: hint_color;
+
+const float THRESHOLD = 0.05;
+
+void fragment(){
+	vec4 col = texture(TEXTURE, UV);
+	if (distance(col, main_original_0) < THRESHOLD) {
+		COLOR = mix(main_replace, vec4(1), 0.25);
+	} else if (distance(col, main_original_1) < THRESHOLD) {
+		COLOR = main_replace;
+	} else if (distance(col, main_original_2) < THRESHOLD) {
+		COLOR = mix(main_replace, vec4(.0, .0, .0, 1.), 0.25);
+	} else if (distance(col, main_original_3) < THRESHOLD) {
+		COLOR = mix(main_replace, vec4(.0, .0, .0, 1.), 0.50);
+	} else if (distance(col, secondary_original_0) < THRESHOLD) {
+		COLOR = mix(secondary_replace, vec4(1), 0.25);
+	} else if (distance(col, secondary_original_1) < THRESHOLD) {
+		COLOR = secondary_replace;
+	} else if (distance(col, secondary_original_2) < THRESHOLD) {
+		COLOR = mix(secondary_replace, vec4(.0, .0, .0, 1.), 0.25);
+	} else {
+		COLOR = col;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/main_original_0 = Color( 0.988235, 0.647059, 0.439216, 1 )
+shader_param/main_original_1 = Color( 0.945098, 0.392157, 0.121569, 1 )
+shader_param/main_original_2 = Color( 0.72549, 0.270588, 0.113725, 1 )
+shader_param/main_original_3 = Color( 0.380392, 0.152941, 0.129412, 1 )
+shader_param/main_replace = Color( 1, 1, 1, 1 )
+shader_param/secondary_original_0 = Color( 1, 0.941176, 0.537255, 1 )
+shader_param/secondary_original_1 = Color( 0.972549, 0.772549, 0.227451, 1 )
+shader_param/secondary_original_2 = Color( 0.909804, 0.541176, 0.211765, 1 )
+shader_param/secondary_replace = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxFlat" id=5]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.65098, 0.988235, 0.858824, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
 [node name="Custom" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -32,94 +97,101 @@ margin_bottom = 13.0
 text = "What do you look like?"
 align = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBox"]
+[node name="Marg" type="MarginContainer" parent="VBox"]
 margin_top = 17.0
 margin_right = 480.0
-margin_bottom = 270.0
+margin_bottom = 249.0
 size_flags_vertical = 3
 custom_constants/margin_right = 12
 custom_constants/margin_left = 12
 
-[node name="Sprites" type="HBoxContainer" parent="VBox/MarginContainer"]
+[node name="Sprites" type="HBoxContainer" parent="VBox/Marg"]
 margin_left = 12.0
 margin_right = 468.0
-margin_bottom = 253.0
+margin_bottom = 232.0
 size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="VBox/MarginContainer/Sprites"]
+[node name="Control" type="Control" parent="VBox/Marg/Sprites"]
 margin_right = 226.0
-margin_bottom = 253.0
+margin_bottom = 232.0
 size_flags_horizontal = 3
 
-[node name="Torso" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+[node name="Torso" type="TextureRect" parent="VBox/Marg/Sprites/Control"]
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 11 )
 expand = true
 stretch_mode = 6
 
-[node name="Tail" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+[node name="Tail" type="TextureRect" parent="VBox/Marg/Sprites/Control"]
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 7 )
 expand = true
 stretch_mode = 6
 
-[node name="Leg" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+[node name="Leg" type="TextureRect" parent="VBox/Marg/Sprites/Control"]
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 13 )
 expand = true
 stretch_mode = 6
 
-[node name="Arm" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+[node name="Arm" type="TextureRect" parent="VBox/Marg/Sprites/Control"]
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 6 )
 expand = true
 stretch_mode = 6
 
-[node name="Head" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+[node name="Head" type="TextureRect" parent="VBox/Marg/Sprites/Control"]
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 8 )
 expand = true
 stretch_mode = 6
 
-[node name="Eye" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+[node name="Eye" type="TextureRect" parent="VBox/Marg/Sprites/Control"]
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 10 )
 expand = true
 stretch_mode = 6
 
-[node name="Horn" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+[node name="Horn" type="TextureRect" parent="VBox/Marg/Sprites/Control"]
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 9 )
 expand = true
 stretch_mode = 6
 
-[node name="Ear" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+[node name="Ear" type="TextureRect" parent="VBox/Marg/Sprites/Control"]
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 12 )
 expand = true
 stretch_mode = 6
 
-[node name="Options" type="VBoxContainer" parent="VBox/MarginContainer/Sprites"]
+[node name="Options" type="VBoxContainer" parent="VBox/Marg/Sprites"]
 margin_left = 230.0
 margin_right = 456.0
-margin_bottom = 253.0
+margin_bottom = 232.0
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Torso" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
-margin_top = 48.0
+[node name="Torso" type="HBoxContainer" parent="VBox/Marg/Sprites/Options"]
 margin_right = 226.0
-margin_bottom = 64.0
+margin_bottom = 16.0
 
-[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Torso"]
+[node name="Left" type="TextureButton" parent="VBox/Marg/Sprites/Options/Torso"]
 margin_right = 16.0
 margin_bottom = 16.0
 disabled = true
@@ -129,7 +201,7 @@ texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Torso"]
+[node name="Label" type="Label" parent="VBox/Marg/Sprites/Options/Torso"]
 margin_left = 20.0
 margin_top = 1.0
 margin_right = 206.0
@@ -138,7 +210,7 @@ size_flags_horizontal = 3
 text = "Torso"
 align = 1
 
-[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Torso"]
+[node name="Right" type="TextureButton" parent="VBox/Marg/Sprites/Options/Torso"]
 margin_left = 210.0
 margin_right = 226.0
 margin_bottom = 16.0
@@ -149,12 +221,12 @@ texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 flip_h = true
 
-[node name="Tail" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
-margin_top = 68.0
+[node name="Tail" type="HBoxContainer" parent="VBox/Marg/Sprites/Options"]
+margin_top = 20.0
 margin_right = 226.0
-margin_bottom = 84.0
+margin_bottom = 36.0
 
-[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Tail"]
+[node name="Left" type="TextureButton" parent="VBox/Marg/Sprites/Options/Tail"]
 margin_right = 16.0
 margin_bottom = 16.0
 disabled = true
@@ -164,7 +236,7 @@ texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Tail"]
+[node name="Label" type="Label" parent="VBox/Marg/Sprites/Options/Tail"]
 margin_left = 20.0
 margin_top = 1.0
 margin_right = 206.0
@@ -173,7 +245,7 @@ size_flags_horizontal = 3
 text = "Tail"
 align = 1
 
-[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Tail"]
+[node name="Right" type="TextureButton" parent="VBox/Marg/Sprites/Options/Tail"]
 margin_left = 210.0
 margin_right = 226.0
 margin_bottom = 16.0
@@ -184,12 +256,12 @@ texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 flip_h = true
 
-[node name="Leg" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
-margin_top = 88.0
+[node name="Leg" type="HBoxContainer" parent="VBox/Marg/Sprites/Options"]
+margin_top = 40.0
 margin_right = 226.0
-margin_bottom = 104.0
+margin_bottom = 56.0
 
-[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Leg"]
+[node name="Left" type="TextureButton" parent="VBox/Marg/Sprites/Options/Leg"]
 margin_right = 16.0
 margin_bottom = 16.0
 disabled = true
@@ -199,7 +271,7 @@ texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Leg"]
+[node name="Label" type="Label" parent="VBox/Marg/Sprites/Options/Leg"]
 margin_left = 20.0
 margin_top = 1.0
 margin_right = 206.0
@@ -208,7 +280,7 @@ size_flags_horizontal = 3
 text = "Leg"
 align = 1
 
-[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Leg"]
+[node name="Right" type="TextureButton" parent="VBox/Marg/Sprites/Options/Leg"]
 margin_left = 210.0
 margin_right = 226.0
 margin_bottom = 16.0
@@ -219,12 +291,12 @@ texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 flip_h = true
 
-[node name="Arm" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
-margin_top = 108.0
+[node name="Arm" type="HBoxContainer" parent="VBox/Marg/Sprites/Options"]
+margin_top = 60.0
 margin_right = 226.0
-margin_bottom = 124.0
+margin_bottom = 76.0
 
-[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Arm"]
+[node name="Left" type="TextureButton" parent="VBox/Marg/Sprites/Options/Arm"]
 margin_right = 16.0
 margin_bottom = 16.0
 disabled = true
@@ -234,7 +306,7 @@ texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Arm"]
+[node name="Label" type="Label" parent="VBox/Marg/Sprites/Options/Arm"]
 margin_left = 20.0
 margin_top = 1.0
 margin_right = 206.0
@@ -243,7 +315,7 @@ size_flags_horizontal = 3
 text = "Arm"
 align = 1
 
-[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Arm"]
+[node name="Right" type="TextureButton" parent="VBox/Marg/Sprites/Options/Arm"]
 margin_left = 210.0
 margin_right = 226.0
 margin_bottom = 16.0
@@ -254,12 +326,12 @@ texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 flip_h = true
 
-[node name="Head" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
-margin_top = 128.0
+[node name="Head" type="HBoxContainer" parent="VBox/Marg/Sprites/Options"]
+margin_top = 80.0
 margin_right = 226.0
-margin_bottom = 144.0
+margin_bottom = 96.0
 
-[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Head"]
+[node name="Left" type="TextureButton" parent="VBox/Marg/Sprites/Options/Head"]
 margin_right = 16.0
 margin_bottom = 16.0
 disabled = true
@@ -269,7 +341,7 @@ texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Head"]
+[node name="Label" type="Label" parent="VBox/Marg/Sprites/Options/Head"]
 margin_left = 20.0
 margin_top = 1.0
 margin_right = 206.0
@@ -278,7 +350,7 @@ size_flags_horizontal = 3
 text = "Head"
 align = 1
 
-[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Head"]
+[node name="Right" type="TextureButton" parent="VBox/Marg/Sprites/Options/Head"]
 margin_left = 210.0
 margin_right = 226.0
 margin_bottom = 16.0
@@ -289,12 +361,12 @@ texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 flip_h = true
 
-[node name="Eye" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
-margin_top = 148.0
+[node name="Eye" type="HBoxContainer" parent="VBox/Marg/Sprites/Options"]
+margin_top = 100.0
 margin_right = 226.0
-margin_bottom = 164.0
+margin_bottom = 116.0
 
-[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Eye"]
+[node name="Left" type="TextureButton" parent="VBox/Marg/Sprites/Options/Eye"]
 margin_right = 16.0
 margin_bottom = 16.0
 disabled = true
@@ -304,7 +376,7 @@ texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Eye"]
+[node name="Label" type="Label" parent="VBox/Marg/Sprites/Options/Eye"]
 margin_left = 20.0
 margin_top = 1.0
 margin_right = 206.0
@@ -313,7 +385,7 @@ size_flags_horizontal = 3
 text = "Eye"
 align = 1
 
-[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Eye"]
+[node name="Right" type="TextureButton" parent="VBox/Marg/Sprites/Options/Eye"]
 margin_left = 210.0
 margin_right = 226.0
 margin_bottom = 16.0
@@ -324,12 +396,12 @@ texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 flip_h = true
 
-[node name="Horn" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
-margin_top = 168.0
+[node name="Horn" type="HBoxContainer" parent="VBox/Marg/Sprites/Options"]
+margin_top = 120.0
 margin_right = 226.0
-margin_bottom = 184.0
+margin_bottom = 136.0
 
-[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Horn"]
+[node name="Left" type="TextureButton" parent="VBox/Marg/Sprites/Options/Horn"]
 margin_right = 16.0
 margin_bottom = 16.0
 disabled = true
@@ -339,7 +411,7 @@ texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Horn"]
+[node name="Label" type="Label" parent="VBox/Marg/Sprites/Options/Horn"]
 margin_left = 20.0
 margin_top = 1.0
 margin_right = 206.0
@@ -348,7 +420,7 @@ size_flags_horizontal = 3
 text = "Horn"
 align = 1
 
-[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Horn"]
+[node name="Right" type="TextureButton" parent="VBox/Marg/Sprites/Options/Horn"]
 margin_left = 210.0
 margin_right = 226.0
 margin_bottom = 16.0
@@ -359,12 +431,12 @@ texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 flip_h = true
 
-[node name="Ear" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
-margin_top = 188.0
+[node name="Ear" type="HBoxContainer" parent="VBox/Marg/Sprites/Options"]
+margin_top = 140.0
 margin_right = 226.0
-margin_bottom = 204.0
+margin_bottom = 156.0
 
-[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Ear"]
+[node name="Left" type="TextureButton" parent="VBox/Marg/Sprites/Options/Ear"]
 margin_right = 16.0
 margin_bottom = 16.0
 disabled = true
@@ -374,7 +446,7 @@ texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Ear"]
+[node name="Label" type="Label" parent="VBox/Marg/Sprites/Options/Ear"]
 margin_left = 20.0
 margin_top = 1.0
 margin_right = 206.0
@@ -383,7 +455,7 @@ size_flags_horizontal = 3
 text = "Ear"
 align = 1
 
-[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Ear"]
+[node name="Right" type="TextureButton" parent="VBox/Marg/Sprites/Options/Ear"]
 margin_left = 210.0
 margin_right = 226.0
 margin_bottom = 16.0
@@ -393,3 +465,79 @@ texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 5 )
 flip_h = true
+
+[node name="Colors" type="HBoxContainer" parent="VBox/Marg/Sprites/Options"]
+margin_top = 160.0
+margin_right = 226.0
+margin_bottom = 209.0
+alignment = 1
+
+[node name="Main" type="VBoxContainer" parent="VBox/Marg/Sprites/Options/Colors"]
+margin_left = 72.0
+margin_right = 98.0
+margin_bottom = 49.0
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBox/Marg/Sprites/Options/Colors/Main"]
+margin_left = 5.0
+margin_right = 21.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+size_flags_horizontal = 4
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+flat = true
+color = Color( 1, 1, 1, 1 )
+
+[node name="Label" type="Label" parent="VBox/Marg/Sprites/Options/Colors/Main"]
+margin_top = 20.0
+margin_right = 26.0
+margin_bottom = 49.0
+text = "Main
+Color"
+align = 1
+
+[node name="Secondary" type="VBoxContainer" parent="VBox/Marg/Sprites/Options/Colors"]
+margin_left = 102.0
+margin_right = 154.0
+margin_bottom = 49.0
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBox/Marg/Sprites/Options/Colors/Secondary"]
+margin_left = 18.0
+margin_right = 34.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+size_flags_horizontal = 4
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+flat = true
+color = Color( 1, 1, 1, 1 )
+
+[node name="Label" type="Label" parent="VBox/Marg/Sprites/Options/Colors/Secondary"]
+margin_top = 20.0
+margin_right = 52.0
+margin_bottom = 49.0
+text = "Secondary
+Color"
+align = 1
+
+[node name="Random" type="Button" parent="VBox/Marg/Sprites/Options"]
+margin_top = 213.0
+margin_right = 226.0
+margin_bottom = 232.0
+text = "Random"
+
+[node name="Continue" type="Button" parent="VBox"]
+margin_top = 253.0
+margin_right = 480.0
+margin_bottom = 272.0
+text = "Continue"
+
+[connection signal="color_changed" from="VBox/Marg/Sprites/Options/Colors/Main/ColorPickerButton" to="." method="on_color_changed" binds= [ 0 ]]
+[connection signal="color_changed" from="VBox/Marg/Sprites/Options/Colors/Secondary/ColorPickerButton" to="." method="on_color_changed" binds= [ 1 ]]
+[connection signal="pressed" from="VBox/Marg/Sprites/Options/Random" to="." method="_on_Random_pressed"]

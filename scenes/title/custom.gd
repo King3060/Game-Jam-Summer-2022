@@ -23,7 +23,8 @@ func _ready() -> void:
 		var key: String = option.substr(0, len(option) - 1).capitalize()
 		sprites[key] = images
 		indexes[key] = 0
-	for child in $VBox/MarginContainer/Sprites/Options.get_children():
+	for i in 8:
+		var child := $VBox/Marg/Sprites/Options.get_child(i)
 		child.get_child(0).connect("pressed", self, "on_button_pressed", [child.name, child.get_child(0)])
 		child.get_child(2).connect("pressed", self, "on_button_pressed", [child.name, child.get_child(2)])
 
@@ -37,4 +38,28 @@ func on_button_pressed(n: String, button: TextureButton) -> void:
 		indexes[n] += 1
 		button.disabled = indexes[n] == sprites[n].size() - 1
 		button.get_parent().get_child(0).disabled = indexes[n] == 0
-	$VBox/MarginContainer/Sprites/Control.get_node(n).texture = sprites[n][indexes[n]]
+	$VBox/Marg/Sprites/Control.get_node(n).texture = sprites[n][indexes[n]]
+
+
+func on_color_changed(color: Color, i: int) -> void:
+	if i == 0:
+		$VBox/Marg/Sprites/Control/Torso.material["shader_param/main_replace"] = color
+	else:
+		$VBox/Marg/Sprites/Control/Torso.material["shader_param/secondary_replace"] = color
+
+
+func _on_Random_pressed() -> void:
+	var main_color := Color(randf(), randf(), randf(), 1.0)
+	$VBox/Marg/Sprites/Options/Colors/Main/ColorPickerButton.color = main_color
+	on_color_changed(main_color, 0)
+	var secondary_color := Color(randf(), randf(), randf(), 1.0)
+	$VBox/Marg/Sprites/Options/Colors/Secondary/ColorPickerButton.color = secondary_color
+	on_color_changed(secondary_color, 1)
+	for option in OPTIONS:
+		var key: String = option.substr(0, len(option) - 1).capitalize()
+		var rand: int = randi() % sprites[key].size()
+		indexes[key] = rand
+		$VBox/Marg/Sprites/Control.get_node(key).texture = sprites[key][rand]
+		var hbox := $VBox/Marg/Sprites/Options.get_node(key)
+		hbox.get_child(0).disabled = rand == 0
+		hbox.get_child(2).disabled = rand == sprites[key].size() - 1
