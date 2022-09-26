@@ -124,24 +124,32 @@ alignment = 1
 
 [node name="Back" type="Button" parent="HBox/Credits"]
 margin_left = 223.0
-margin_top = 88.0
+margin_top = 60.0
 margin_right = 257.0
-margin_bottom = 107.0
+margin_bottom = 79.0
 size_flags_horizontal = 4
 text = "Back"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HBox/Credits"]
-margin_top = 111.0
+margin_top = 83.0
 margin_right = 480.0
-margin_bottom = 181.0
+margin_bottom = 209.0
 bbcode_enabled = true
 bbcode_text = "[center]
 Exuin - Programming and art 
+Cloud - Programming and art
+Reacher - Programming
+Seriph - Art
+Sytro - Audio
 [url=https://managore.itch.io/m5x7]Font - m5x7 by Daniel Linssen[/url]
 [url=https://godotshaders.com/shader/diamond-based-screen-transition/]Screen transition shader - mackatap[/url]
 [/center]"
 text = "
 Exuin - Programming and art 
+Cloud - Programming and art
+Reacher - Programming
+Seriph - Art
+Sytro - Audio
 Font - m5x7 by Daniel Linssen
 Screen transition shader - mackatap
 "

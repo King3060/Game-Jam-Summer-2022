@@ -1,0 +1,395 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://resources/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/title/arrow/normal.png" type="Texture" id=2]
+[ext_resource path="res://scenes/title/arrow/pressed.png" type="Texture" id=3]
+[ext_resource path="res://scenes/title/arrow/highlighted.png" type="Texture" id=4]
+[ext_resource path="res://scenes/title/arrow/focus.png" type="Texture" id=5]
+[ext_resource path="res://scenes/player/sprites/arms/00_human.png" type="Texture" id=6]
+[ext_resource path="res://scenes/player/sprites/tails/00_small.png" type="Texture" id=7]
+[ext_resource path="res://scenes/player/sprites/heads/00_square.png" type="Texture" id=8]
+[ext_resource path="res://scenes/player/sprites/horns/00_small.png" type="Texture" id=9]
+[ext_resource path="res://scenes/player/sprites/eyes/00_small.png" type="Texture" id=10]
+[ext_resource path="res://scenes/player/sprites/torsos/00_square.png" type="Texture" id=11]
+[ext_resource path="res://scenes/player/sprites/ears/00_small.png" type="Texture" id=12]
+[ext_resource path="res://scenes/player/sprites/legs/00_human.png" type="Texture" id=13]
+[ext_resource path="res://scenes/title/custom.gd" type="Script" id=14]
+[ext_resource path="res://scenes/title/arrow/disabled.png" type="Texture" id=15]
+
+[node name="Custom" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 14 )
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="VBox"]
+margin_right = 480.0
+margin_bottom = 13.0
+text = "What do you look like?"
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBox"]
+margin_top = 17.0
+margin_right = 480.0
+margin_bottom = 270.0
+size_flags_vertical = 3
+custom_constants/margin_right = 12
+custom_constants/margin_left = 12
+
+[node name="Sprites" type="HBoxContainer" parent="VBox/MarginContainer"]
+margin_left = 12.0
+margin_right = 468.0
+margin_bottom = 253.0
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="VBox/MarginContainer/Sprites"]
+margin_right = 226.0
+margin_bottom = 253.0
+size_flags_horizontal = 3
+
+[node name="Torso" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 6
+
+[node name="Tail" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 6
+
+[node name="Leg" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 13 )
+expand = true
+stretch_mode = 6
+
+[node name="Arm" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 6
+
+[node name="Head" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 6
+
+[node name="Eye" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 6
+
+[node name="Horn" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 6
+
+[node name="Ear" type="TextureRect" parent="VBox/MarginContainer/Sprites/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 6
+
+[node name="Options" type="VBoxContainer" parent="VBox/MarginContainer/Sprites"]
+margin_left = 230.0
+margin_right = 456.0
+margin_bottom = 253.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Torso" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
+margin_top = 48.0
+margin_right = 226.0
+margin_bottom = 64.0
+
+[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Torso"]
+margin_right = 16.0
+margin_bottom = 16.0
+disabled = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Torso"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 206.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Torso"
+align = 1
+
+[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Torso"]
+margin_left = 210.0
+margin_right = 226.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+flip_h = true
+
+[node name="Tail" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
+margin_top = 68.0
+margin_right = 226.0
+margin_bottom = 84.0
+
+[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Tail"]
+margin_right = 16.0
+margin_bottom = 16.0
+disabled = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Tail"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 206.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Tail"
+align = 1
+
+[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Tail"]
+margin_left = 210.0
+margin_right = 226.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+flip_h = true
+
+[node name="Leg" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
+margin_top = 88.0
+margin_right = 226.0
+margin_bottom = 104.0
+
+[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Leg"]
+margin_right = 16.0
+margin_bottom = 16.0
+disabled = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Leg"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 206.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Leg"
+align = 1
+
+[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Leg"]
+margin_left = 210.0
+margin_right = 226.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+flip_h = true
+
+[node name="Arm" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
+margin_top = 108.0
+margin_right = 226.0
+margin_bottom = 124.0
+
+[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Arm"]
+margin_right = 16.0
+margin_bottom = 16.0
+disabled = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Arm"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 206.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Arm"
+align = 1
+
+[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Arm"]
+margin_left = 210.0
+margin_right = 226.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+flip_h = true
+
+[node name="Head" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
+margin_top = 128.0
+margin_right = 226.0
+margin_bottom = 144.0
+
+[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Head"]
+margin_right = 16.0
+margin_bottom = 16.0
+disabled = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Head"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 206.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Head"
+align = 1
+
+[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Head"]
+margin_left = 210.0
+margin_right = 226.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+flip_h = true
+
+[node name="Eye" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
+margin_top = 148.0
+margin_right = 226.0
+margin_bottom = 164.0
+
+[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Eye"]
+margin_right = 16.0
+margin_bottom = 16.0
+disabled = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Eye"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 206.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Eye"
+align = 1
+
+[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Eye"]
+margin_left = 210.0
+margin_right = 226.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+flip_h = true
+
+[node name="Horn" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
+margin_top = 168.0
+margin_right = 226.0
+margin_bottom = 184.0
+
+[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Horn"]
+margin_right = 16.0
+margin_bottom = 16.0
+disabled = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Horn"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 206.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Horn"
+align = 1
+
+[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Horn"]
+margin_left = 210.0
+margin_right = 226.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+flip_h = true
+
+[node name="Ear" type="HBoxContainer" parent="VBox/MarginContainer/Sprites/Options"]
+margin_top = 188.0
+margin_right = 226.0
+margin_bottom = 204.0
+
+[node name="Left" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Ear"]
+margin_right = 16.0
+margin_bottom = 16.0
+disabled = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="VBox/MarginContainer/Sprites/Options/Ear"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 206.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Ear"
+align = 1
+
+[node name="Right" type="TextureButton" parent="VBox/MarginContainer/Sprites/Options/Ear"]
+margin_left = 210.0
+margin_right = 226.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 15 )
+texture_focused = ExtResource( 5 )
+flip_h = true

@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://scenes/player/torsos/00_square.png" type="Texture" id=1]
+[ext_resource path="res://scenes/player/sprites/torsos/00_square.png" type="Texture" id=1]
 [ext_resource path="res://scenes/player/player.gd" type="Script" id=2]
-[ext_resource path="res://scenes/player/ears/00_small.png" type="Texture" id=3]
-[ext_resource path="res://scenes/player/legs/00_human.png" type="Texture" id=4]
-[ext_resource path="res://scenes/player/arms/00_human.png" type="Texture" id=5]
-[ext_resource path="res://scenes/player/horns/00_small.png" type="Texture" id=6]
-[ext_resource path="res://scenes/player/heads/00_square.png" type="Texture" id=7]
-[ext_resource path="res://scenes/player/eyes/00_small.png" type="Texture" id=8]
-[ext_resource path="res://scenes/player/tails/00_small.png" type="Texture" id=9]
+[ext_resource path="res://scenes/player/sprites/ears/00_small.png" type="Texture" id=3]
+[ext_resource path="res://scenes/player/sprites/legs/00_human.png" type="Texture" id=4]
+[ext_resource path="res://scenes/player/sprites/arms/00_human.png" type="Texture" id=5]
+[ext_resource path="res://scenes/player/sprites/horns/00_small.png" type="Texture" id=6]
+[ext_resource path="res://scenes/player/sprites/heads/00_square.png" type="Texture" id=7]
+[ext_resource path="res://scenes/player/sprites/eyes/00_small.png" type="Texture" id=8]
+[ext_resource path="res://scenes/player/sprites/tails/00_small.png" type="Texture" id=9]
 
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
