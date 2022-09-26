@@ -1,0 +1,51 @@
+[gd_scene format=2]
+
+[node name="Title" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 248.0
+margin_right = 1024.0
+margin_bottom = 262.0
+text = "Buddy Up Jam: Summer 2022"
+align = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_top = 266.0
+margin_right = 1024.0
+margin_bottom = 280.0
+text = "Title of Game"
+align = 1
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+margin_left = 491.0
+margin_top = 284.0
+margin_right = 532.0
+margin_bottom = 304.0
+size_flags_horizontal = 4
+text = "Start"
+
+[node name="Continue" type="Button" parent="VBoxContainer"]
+margin_left = 477.0
+margin_top = 308.0
+margin_right = 546.0
+margin_bottom = 328.0
+size_flags_horizontal = 4
+text = "Continue"
+
+[node name="Credits" type="Button" parent="VBoxContainer"]
+margin_left = 483.0
+margin_top = 332.0
+margin_right = 540.0
+margin_bottom = 352.0
+size_flags_horizontal = 4
+text = "Credits"
