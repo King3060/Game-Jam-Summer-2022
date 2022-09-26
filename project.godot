@@ -15,8 +15,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Buddy Up Jam: Summer 2022"
-run/main_scene="res://scenes/title/title.tscn"
+run/main_scene="res://scenes/main/main.tscn"
+boot_splash/image="res://scenes/main/splash.png"
+boot_splash/use_filter=false
 config/icon="res://icon.png"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [display]
 

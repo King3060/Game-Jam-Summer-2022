@@ -124,24 +124,26 @@ alignment = 1
 
 [node name="Back" type="Button" parent="HBox/Credits"]
 margin_left = 223.0
-margin_top = 95.0
+margin_top = 88.0
 margin_right = 257.0
-margin_bottom = 114.0
+margin_bottom = 107.0
 size_flags_horizontal = 4
 text = "Back"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HBox/Credits"]
-margin_top = 118.0
+margin_top = 111.0
 margin_right = 480.0
-margin_bottom = 174.0
+margin_bottom = 181.0
 bbcode_enabled = true
 bbcode_text = "[center]
 Exuin - Programming and art 
-Font - m5x7 by Daniel Linssen
+[url=https://managore.itch.io/m5x7]Font - m5x7 by Daniel Linssen[/url]
+[url=https://godotshaders.com/shader/diamond-based-screen-transition/]Screen transition shader - mackatap[/url]
 [/center]"
 text = "
 Exuin - Programming and art 
 Font - m5x7 by Daniel Linssen
+Screen transition shader - mackatap
 "
 fit_content_height = true
 scroll_active = false
@@ -153,3 +155,4 @@ anims/to_title = SubResource( 3 )
 
 [connection signal="pressed" from="HBox/Title/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="HBox/Credits/Back" to="." method="_on_Back_pressed"]
+[connection signal="meta_clicked" from="HBox/Credits/RichTextLabel" to="." method="_on_RichTextLabel_meta_clicked"]
