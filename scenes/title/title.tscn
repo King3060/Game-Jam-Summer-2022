@@ -71,47 +71,55 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="HBox/Title"]
-margin_top = 77.0
+margin_top = 65.0
 margin_right = 480.0
-margin_bottom = 90.0
+margin_bottom = 78.0
 text = "Buddy Up Jam: Summer 2022"
 align = 1
 
 [node name="Label3" type="Label" parent="HBox/Title"]
-margin_top = 94.0
+margin_top = 82.0
 margin_right = 480.0
-margin_bottom = 107.0
+margin_bottom = 95.0
 text = "Legend"
 align = 1
 
 [node name="Label2" type="Label" parent="HBox/Title"]
-margin_top = 111.0
+margin_top = 99.0
 margin_right = 480.0
-margin_bottom = 124.0
+margin_bottom = 112.0
 text = "Title of Game"
 align = 1
 
 [node name="Start" type="Button" parent="HBox/Title"]
 margin_left = 220.0
-margin_top = 128.0
+margin_top = 116.0
 margin_right = 259.0
-margin_bottom = 147.0
+margin_bottom = 135.0
 size_flags_horizontal = 4
 text = "Start"
 
 [node name="Continue" type="Button" parent="HBox/Title"]
 margin_left = 212.0
-margin_top = 151.0
+margin_top = 139.0
 margin_right = 268.0
-margin_bottom = 170.0
+margin_bottom = 158.0
 size_flags_horizontal = 4
 text = "Continue"
 
+[node name="Settings" type="Button" parent="HBox/Title"]
+margin_left = 212.0
+margin_top = 162.0
+margin_right = 267.0
+margin_bottom = 181.0
+size_flags_horizontal = 4
+text = "Settings"
+
 [node name="Credits" type="Button" parent="HBox/Title"]
 margin_left = 215.0
-margin_top = 174.0
+margin_top = 185.0
 margin_right = 264.0
-margin_bottom = 193.0
+margin_bottom = 204.0
 size_flags_horizontal = 4
 text = "Credits"
 
@@ -162,6 +170,7 @@ anims/to_credits = SubResource( 2 )
 anims/to_title = SubResource( 3 )
 
 [connection signal="pressed" from="HBox/Title/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="HBox/Title/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="HBox/Title/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="HBox/Credits/Back" to="." method="_on_Back_pressed"]
 [connection signal="meta_clicked" from="HBox/Credits/RichTextLabel" to="." method="_on_RichTextLabel_meta_clicked"]

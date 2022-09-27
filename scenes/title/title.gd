@@ -24,3 +24,7 @@ func _on_Start_pressed() -> void:
 	if $AnimationPlayer.is_playing():
 		return
 	emit_signal("change_scene", "res://scenes/title/custom.tscn")
+
+
+func _on_Settings_pressed() -> void:
+	Settings.show_settings()

@@ -20,6 +20,14 @@ boot_splash/image="res://scenes/main/splash.png"
 boot_splash/use_filter=false
 config/icon="res://icon.png"
 
+[autoload]
+
+GlobalEnvironment="*res://scenes/autoloads/environment.tscn"
+Keybinds="*res://scenes/autoloads/keybinds.tscn"
+Settings="*res://scenes/autoloads/settings.tscn"
+SaveLoad="*res://scenes/autoloads/save_load.tscn"
+Dialogue="*res://scenes/autoloads/dialogue.tscn"
+
 [debug]
 
 gdscript/warnings/return_value_discarded=false
