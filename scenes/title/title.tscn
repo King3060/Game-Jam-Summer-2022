@@ -170,6 +170,7 @@ anims/to_credits = SubResource( 2 )
 anims/to_title = SubResource( 3 )
 
 [connection signal="pressed" from="HBox/Title/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="HBox/Title/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="HBox/Title/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="HBox/Title/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="HBox/Credits/Back" to="." method="_on_Back_pressed"]

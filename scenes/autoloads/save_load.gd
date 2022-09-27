@@ -74,6 +74,7 @@ func save(datetime: Dictionary, file_name: String, make_new_button := true) -> v
 func show_save_load(can_save := true) -> void:
 	get_tree().paused = true
 	$PopupPanel.popup_centered()
+	$PopupPanel/VBoxContainer/New.disabled = not can_save
 	for button in $PopupPanel/VBoxContainer/ScrollContainer/VBoxContainer/Slots.get_children():
 		button.get_popup().set_item_disabled(1, not can_save)
 

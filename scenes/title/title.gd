@@ -28,3 +28,7 @@ func _on_Start_pressed() -> void:
 
 func _on_Settings_pressed() -> void:
 	Settings.show_settings()
+
+
+func _on_Continue_pressed() -> void:
+	SaveLoad.show_save_load(false)
