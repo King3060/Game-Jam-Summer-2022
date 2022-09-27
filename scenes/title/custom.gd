@@ -1,6 +1,8 @@
 extends Control
 
 
+signal change_scene(to)
+
 const OPTIONS := ["torsos", "tails", "legs", "arms", "heads", "eyes", "horns", "ears"]
 const SPRITE_PATH := "res://scenes/player/sprites/"
 
@@ -63,3 +65,12 @@ func _on_Random_pressed() -> void:
 		var hbox := $VBox/Marg/Sprites/Options.get_node(key)
 		hbox.get_child(0).disabled = rand == 0
 		hbox.get_child(2).disabled = rand == sprites[key].size() - 1
+
+
+func _on_Continue_pressed() -> void:
+	if get_tree().current_scene == self:
+		return
+	for option in OPTIONS:
+		var key: String = option.substr(0, len(option) - 1).capitalize()
+		get_tree().current_scene.player_sprites[key] = $VBox/Marg/Sprites/Control.get_node(key).texture
+	emit_signal("change_scene", "res://scenes/test/test.tscn")

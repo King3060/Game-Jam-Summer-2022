@@ -3,8 +3,11 @@ extends Node
 
 var change_scene_to: String
 var change_scene_transition: bool
+var player_sprites := {}
+var player_shader := preload("res://scenes/player/player_shader.tres")
 
 onready var cur_scene := $Splash
+
 
 func _ready() -> void:
 	randomize()

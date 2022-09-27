@@ -1,0 +1,50 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 main_original_0: hint_color; // Highlight
+uniform vec4 main_original_1: hint_color; // Base
+uniform vec4 main_original_2: hint_color; // Shadow
+uniform vec4 main_original_3: hint_color; // Shadow 2
+uniform vec4 main_replace: hint_color;
+
+uniform vec4 secondary_original_0: hint_color; // Highlight
+uniform vec4 secondary_original_1: hint_color; // Base
+uniform vec4 secondary_original_2: hint_color; // Shadow
+uniform vec4 secondary_replace: hint_color;
+
+const float THRESHOLD = 0.05;
+
+void fragment(){
+	vec4 col = texture(TEXTURE, UV);
+	if (distance(col, main_original_0) < THRESHOLD) {
+		COLOR = mix(main_replace, vec4(1), 0.25);
+	} else if (distance(col, main_original_1) < THRESHOLD) {
+		COLOR = main_replace;
+	} else if (distance(col, main_original_2) < THRESHOLD) {
+		COLOR = mix(main_replace, vec4(.0, .0, .0, 1.), 0.25);
+	} else if (distance(col, main_original_3) < THRESHOLD) {
+		COLOR = mix(main_replace, vec4(.0, .0, .0, 1.), 0.50);
+	} else if (distance(col, secondary_original_0) < THRESHOLD) {
+		COLOR = mix(secondary_replace, vec4(1), 0.25);
+	} else if (distance(col, secondary_original_1) < THRESHOLD) {
+		COLOR = secondary_replace;
+	} else if (distance(col, secondary_original_2) < THRESHOLD) {
+		COLOR = mix(secondary_replace, vec4(.0, .0, .0, 1.), 0.25);
+	} else {
+		COLOR = col;
+	}
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/main_original_0 = Color( 0.988235, 0.647059, 0.439216, 1 )
+shader_param/main_original_1 = Color( 0.945098, 0.392157, 0.121569, 1 )
+shader_param/main_original_2 = Color( 0.72549, 0.270588, 0.113725, 1 )
+shader_param/main_original_3 = Color( 0.380392, 0.152941, 0.129412, 1 )
+shader_param/main_replace = Color( 1, 1, 1, 1 )
+shader_param/secondary_original_0 = Color( 1, 0.941176, 0.537255, 1 )
+shader_param/secondary_original_1 = Color( 0.972549, 0.772549, 0.227451, 1 )
+shader_param/secondary_original_2 = Color( 0.909804, 0.541176, 0.211765, 1 )
+shader_param/secondary_replace = Color( 1, 1, 1, 1 )
